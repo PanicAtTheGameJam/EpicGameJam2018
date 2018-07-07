@@ -12,7 +12,6 @@ public class Present : MonoBehaviour {
 
 	public void MoveDownwards() { 
 		transform.position = new Vector3(transform.position.x, transform.position.y - HorizontalFallSpeed, 0);
-		Debug.Log(transform.position);
 	}
 
 	public void DestroyPresent()
