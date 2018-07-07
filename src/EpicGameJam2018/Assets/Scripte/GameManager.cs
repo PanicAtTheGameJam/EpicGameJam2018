@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         // create 4 players
         players.Add(PlayerId.P1, new Player(KeyCode.Q, KeyCode.W));
         players.Add(PlayerId.P2, new Player(KeyCode.X, KeyCode.C));
-        players.Add(PlayerId.P3, new Player(KeyCode.J, KeyCode.K));
+        players.Add(PlayerId.P3, new Player(KeyCode.O, KeyCode.P));
         players.Add(PlayerId.P4, new Player(KeyCode.LeftArrow, KeyCode.RightArrow));
     }
 	
