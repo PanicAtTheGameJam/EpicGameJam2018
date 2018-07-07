@@ -7,3 +7,7 @@
 - [How To Open Unity Project From Project Folder?(Where File Is?)
 ](https://github.com/DonVerga/HistoriaFamilia/blob/master/HistoriaFamilia/Assets/Scripts/GameManager.cs)
 > There is no Unity Project File. There is a folder, with the Assets (and other) folders inside. Just open unity, click "open project" and click on the folder that your project is in.
+
+
+## Prerequisites / common mistakes for collision detection:
+- [Collision detection not working unity](https://stackoverflow.com/questions/43939179/collision-detection-not-working-unity)

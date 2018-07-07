@@ -15,12 +15,24 @@ public class Collector : MonoBehaviour {
 	public float StepSize = 0.1f;
 
 	private GameManager _gameManager;
+	private PresentManager _presentManager;
 
+	void OnCollisionEnter2D (Collision2D col)
+    {
+		Debug.Log(col.gameObject.name);
+        if(col.gameObject.tag == "Present")
+        {
+			Debug.Log("alpha");
+			_gameManager.AddScore(Playerid);
+			_presentManager.DeletePresent(col.gameObject.GetComponent<Present>());
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
 		_gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		//Todo: check if gamemanager == null
+		_presentManager = GameObject.Find("PresentManager").GetComponent<PresentManager>();
 
 		GetComponentInChildren<SpriteRenderer>().sprite = Sprite;
 
@@ -41,20 +53,14 @@ public class Collector : MonoBehaviour {
 
 	public void MoveLeft()
 	{
-		Debug.Log(transform.position);
 		if (transform.position.x < -_stageDimensions.y - HorizontalMovementExtender) return;
 		transform.position = new Vector3 (transform.position.x - StepSize, transform.position.y, 0);
 	}
 
 	public void MoveRight()
 	{
-		Debug.Log(_stageDimensions);
 		if (transform.position.x > _stageDimensions.y + HorizontalMovementExtender) return;
 		transform.position = new Vector3 (transform.position.x + StepSize, transform.position.y, 0);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

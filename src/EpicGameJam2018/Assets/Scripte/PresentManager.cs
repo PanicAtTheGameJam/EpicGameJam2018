@@ -126,8 +126,13 @@ public class PresentManager : MonoBehaviour {
 		foreach (Present p in toBeRemoved)
 		{
 			
-			_allPresents.Remove(p);
-			p.DestroyPresent();
+			DeletePresent(p);
 		}
+	}
+
+	public void DeletePresent(Present p)
+	{
+		_allPresents.Remove(p);
+		p.DestroyPresent();
 	}
 }
