@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerId { P1, P2, P3, P4 }
+public enum KeyCallback { KeyOneDown, KeyOnePressed, KeyOneUp, KeyTwoDown, KeyTwoPressed, KeyTwoUp }
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance = null;
-
-
-    public enum PlayerId { P1, P2, P3, P4 }
-
-
     private Dictionary<PlayerId, Player> players = new Dictionary<PlayerId, Player>();
 
 	// Use this for initialization
@@ -48,10 +46,9 @@ public class GameManager : MonoBehaviour
 	}
 
     //METHODS
-    public void SetActionsForPlayer(PlayerId player, Action actionA, Action actionB)
+    public void SetActionsForPlayer(PlayerId player, Dictionary<KeyCallback, Action> callbacks)
     {
-        players[player].KeyOneDownCallback = actionA;
-        players[player].KeyTwoDownCallback = actionB;
+        players[player].Callbacks = callbacks;
     }
 
 
@@ -88,13 +85,8 @@ public class GameManager : MonoBehaviour
         private readonly KeyCode _keyOneCode;
         private readonly KeyCode _keyTwoCode;
 
+        public Dictionary<KeyCallback, Action> Callbacks { private get; set; }
         public int Score { get; set; }
-        public Action KeyOneDownCallback { private get; set; }
-        public Action KeyOnePressedCallback { private get; set; }
-        public Action KeyOneUpCallback { private get; set; }
-        public Action KeyTwoDownCallback { private get; set; }
-        public Action KeyTwoPressedCallback { private get; set; }
-        public Action KeyTwoUpCallback { private get; set; }
 
         public Player(KeyCode keyOne, KeyCode keyTwo)
         {
@@ -104,40 +96,49 @@ public class GameManager : MonoBehaviour
 
         public void ProcessInput()
         {
-            if (Input.GetKeyDown(_keyOneCode) && KeyOneDownCallback != null)
+            Action action;
+            if (Input.GetKeyDown(_keyOneCode))
             {
-                KeyOneDownCallback.Invoke();
+                Callbacks.TryGetValue(KeyCallback.KeyOneDown, out action);
+                action.Invoke();
             }
-            if (Input.GetKey(_keyOneCode) && KeyOnePressedCallback != null)
+            if (Input.GetKey(_keyOneCode))
             {
-                KeyOnePressedCallback.Invoke();
+                Callbacks.TryGetValue(KeyCallback.KeyOnePressed, out action);
+                action.Invoke();
             }
-            if (Input.GetKeyUp(_keyOneCode) && KeyOneUpCallback != null)
+            if (Input.GetKeyUp(_keyOneCode))
             {
-                KeyOneUpCallback.Invoke();
+                Callbacks.TryGetValue(KeyCallback.KeyOneUp, out action);
+                action.Invoke();
             }
-            if (Input.GetKeyDown(_keyTwoCode) && KeyTwoDownCallback != null)
+            if (Input.GetKeyDown(_keyTwoCode))
             {
-                KeyTwoDownCallback.Invoke();
+                Callbacks.TryGetValue(KeyCallback.KeyTwoDown, out action);
+                action.Invoke();
             }
-            if (Input.GetKey(_keyTwoCode) && KeyTwoPressedCallback != null)
+            if (Input.GetKey(_keyTwoCode))
             {
-                KeyTwoPressedCallback.Invoke();
+                Callbacks.TryGetValue(KeyCallback.KeyTwoPressed, out action);
+                action.Invoke();
             }
-            if (Input.GetKeyUp(_keyTwoCode) && KeyTwoUpCallback != null)
+            if (Input.GetKeyUp(_keyTwoCode))
             {
-                KeyTwoUpCallback.Invoke();
+                Callbacks.TryGetValue(KeyCallback.KeyTwoUp, out action);
+            }
+        }
+
+        public void AddInputs(Dictionary<KeyCallback, Action> callbacks)
+        {
+            foreach (KeyCallback key in callbacks.Keys)
+            {
+                this.Callbacks[key] = callbacks[key];
             }
         }
 
         public void ClearInputs()
         {
-            KeyOneDownCallback = null;
-            KeyOnePressedCallback = null;
-            KeyOneUpCallback = null;
-            KeyTwoDownCallback = null;
-            KeyTwoPressedCallback = null;
-            KeyTwoUpCallback = null;
+            Callbacks.Clear();
         }
     }
 }
