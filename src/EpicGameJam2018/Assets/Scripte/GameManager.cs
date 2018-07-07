@@ -97,34 +97,41 @@ public class GameManager : MonoBehaviour
         public void ProcessInput()
         {
             Action action;
-            if (Input.GetKeyDown(_keyOneCode))
+
+            if (Input.GetKeyDown(_keyOneCode)
+            && Callbacks.TryGetValue(KeyCallback.KeyOneDown, out action))
             {
-                Callbacks.TryGetValue(KeyCallback.KeyOneDown, out action);
                 action.Invoke();
             }
-            if (Input.GetKey(_keyOneCode))
+
+            if (Input.GetKey(_keyOneCode)
+            && Callbacks.TryGetValue(KeyCallback.KeyOnePressed, out action))
             {
-                Callbacks.TryGetValue(KeyCallback.KeyOnePressed, out action);
                 action.Invoke();
             }
-            if (Input.GetKeyUp(_keyOneCode))
+
+            if (Input.GetKeyUp(_keyOneCode)
+            && Callbacks.TryGetValue(KeyCallback.KeyOneUp, out action))
             {
-                Callbacks.TryGetValue(KeyCallback.KeyOneUp, out action);
                 action.Invoke();
             }
-            if (Input.GetKeyDown(_keyTwoCode))
+
+            if (Input.GetKeyDown(_keyTwoCode)
+            && Callbacks.TryGetValue(KeyCallback.KeyTwoDown, out action))
             {
-                Callbacks.TryGetValue(KeyCallback.KeyTwoDown, out action);
                 action.Invoke();
             }
-            if (Input.GetKey(_keyTwoCode))
+
+            if (Input.GetKey(_keyTwoCode)
+            && Callbacks.TryGetValue(KeyCallback.KeyTwoPressed, out action))
             {
-                Callbacks.TryGetValue(KeyCallback.KeyTwoPressed, out action);
                 action.Invoke();
             }
-            if (Input.GetKeyUp(_keyTwoCode))
+
+            if (Input.GetKeyUp(_keyTwoCode)
+            && Callbacks.TryGetValue(KeyCallback.KeyTwoUp, out action))
             {
-                Callbacks.TryGetValue(KeyCallback.KeyTwoUp, out action);
+                action.Invoke();
             }
         }
 
