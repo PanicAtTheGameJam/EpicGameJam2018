@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PongControlsP1: MonoBehaviour
+public class BarControls: MonoBehaviour
 {
     public GameObject gameManagerParent;
+    public PlayerId playerId;
     public float speed = 5;
 
     private GameManager gameManager;
@@ -21,7 +22,7 @@ public class PongControlsP1: MonoBehaviour
         callbacks.Add(KeyCallback.KeyTwoUp, OnKeyTwoUp);
 
         gameManager = gameManagerParent.GetComponent<GameManager>();
-        gameManager.SetActionsForPlayer(PlayerId.P1, callbacks);
+        gameManager.SetActionsForPlayer(playerId, callbacks);
 	}
 
     private void OnKeyOneDown()
@@ -31,7 +32,15 @@ public class PongControlsP1: MonoBehaviour
 
     private void OnKeyOnePressed()
     {
-        GetComponent<Rigidbody2D>().velocity.Scale(new Vector2(0, 1.5f));
+        Vector2 vector = GetComponent<Rigidbody2D>().velocity;
+        if (vector.x.Equals(0) && vector.y.Equals(0))
+        {
+            OnKeyOneDown();
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity * 1.1f;
+        }
     }
 
     private void OnKeyOneUp()
@@ -46,7 +55,15 @@ public class PongControlsP1: MonoBehaviour
 
     private void OnKeyTwoPressed()
     {
-        GetComponent<Rigidbody2D>().velocity.Scale(new Vector2(0, -1.5f));
+        Vector2 vector = GetComponent<Rigidbody2D>().velocity;
+        if (vector.x.Equals(0) && vector.y.Equals(0))
+        {
+            OnKeyTwoDown();
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity * 1.1f;
+        }
     }
 
     private void OnKeyTwoUp()
