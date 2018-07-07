@@ -39,7 +39,6 @@ public class PresentManager : MonoBehaviour {
 		//Todo: check if gamemanager == null
 
 		_stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height,0));
-		Debug.Log(_stageDimensions);
 
 		_presentHolder = new GameObject("Presents").transform;
 
