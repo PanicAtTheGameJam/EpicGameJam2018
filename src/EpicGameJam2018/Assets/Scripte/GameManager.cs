@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PlayerId { P1, P2, P3, P4 }
 public enum KeyCallback { KeyOneDown, KeyOnePressed, KeyOneUp, KeyTwoDown, KeyTwoPressed, KeyTwoUp }
@@ -8,6 +9,10 @@ public enum KeyCallback { KeyOneDown, KeyOnePressed, KeyOneUp, KeyTwoDown, KeyTw
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance = null;
+
+    private readonly string[] _minigames = { "CatchThePresents", "Pong" }; //TODO add panda CatchThePresents
+    private int _nextGame = 0;
+
     private Dictionary<PlayerId, Player> players = new Dictionary<PlayerId, Player>();
 
 	// Use this for initialization
@@ -67,7 +72,9 @@ public class GameManager : MonoBehaviour
         return --players[player].Score;
     }
 
-
+    /// <summary>
+    /// Call this method at the end of each minigame
+    /// </summary>
     public void NextGame()
     {
         foreach (var player in players.Values)
@@ -75,7 +82,22 @@ public class GameManager : MonoBehaviour
             player.ClearInputs();
         }
 
-        //TODO start next game
+        //1. if nextGame is last game -> vic screen
+        if (_nextGame == _minigames.Length) //we finished the list, show final score
+        {
+            //TODO switch to final score
+        }
+        else //2. if next game is just another game -> first intermediate score
+        {
+            SceneManager.LoadScene("IntermediateScore");
+        }
+
+        _nextGame++;
+    }
+
+    public string GetNextScene()
+    {
+        return _minigames[_nextGame];
     }
 
 
