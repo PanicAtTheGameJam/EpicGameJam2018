@@ -216,7 +216,7 @@ MonoBehaviour:
   Present: {fileID: 1358946976671690, guid: f5f3712096b7d3848a51cb2834ee0c20, type: 2}
   ScreenSpawnPaddingX: 1.5
   ScreenSpawnPaddingY: 0.5
-  WaitingTimeForNextPresent: 1
+  WaitingTimeForNextPresent: 3
 --- !u!4 &860911182
 Transform:
   m_ObjectHideFlags: 0
@@ -224,7 +224,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 860911180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1997709, y: -0.87460256, z: -7.8926706}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
