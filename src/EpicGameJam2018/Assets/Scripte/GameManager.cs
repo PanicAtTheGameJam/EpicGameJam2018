@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
     //METHODS
     public void SetActionsForPlayer(PlayerId player, Action actionA, Action actionB)
     {
-        players[player].KeyOneCallback = actionA;
-        players[player].KeyTwoCallback = actionB;
+        players[player].KeyOneDownCallback = actionA;
+        players[player].KeyTwoDownCallback = actionB;
     }
 
 
@@ -88,11 +88,13 @@ public class GameManager : MonoBehaviour
         private readonly KeyCode _keyOneCode;
         private readonly KeyCode _keyTwoCode;
 
-
         public int Score { get; set; }
-        public Action KeyOneCallback { private get; set; }
-        public Action KeyTwoCallback { private get; set; }
-
+        public Action KeyOneDownCallback { private get; set; }
+        public Action KeyOnePressedCallback { private get; set; }
+        public Action KeyOneUpCallback { private get; set; }
+        public Action KeyTwoDownCallback { private get; set; }
+        public Action KeyTwoPressedCallback { private get; set; }
+        public Action KeyTwoUpCallback { private get; set; }
 
         public Player(KeyCode keyOne, KeyCode keyTwo)
         {
@@ -100,24 +102,42 @@ public class GameManager : MonoBehaviour
             _keyTwoCode = keyTwo;
         }
 
-
         public void ProcessInput()
         {
-            if (Input.GetKeyDown(_keyOneCode))
+            if (Input.GetKeyDown(_keyOneCode) && KeyOneDownCallback != null)
             {
-                KeyOneCallback.Invoke();
+                KeyOneDownCallback.Invoke();
             }
-
-            if (Input.GetKeyDown(_keyTwoCode))
+            if (Input.GetKey(_keyOneCode) && KeyOnePressedCallback != null)
             {
-                KeyTwoCallback.Invoke();
+                KeyOnePressedCallback.Invoke();
+            }
+            if (Input.GetKeyUp(_keyOneCode) && KeyOneUpCallback != null)
+            {
+                KeyOneUpCallback.Invoke();
+            }
+            if (Input.GetKeyDown(_keyTwoCode) && KeyTwoDownCallback != null)
+            {
+                KeyTwoDownCallback.Invoke();
+            }
+            if (Input.GetKey(_keyTwoCode) && KeyTwoPressedCallback != null)
+            {
+                KeyTwoPressedCallback.Invoke();
+            }
+            if (Input.GetKeyUp(_keyTwoCode) && KeyTwoUpCallback != null)
+            {
+                KeyTwoUpCallback.Invoke();
             }
         }
 
         public void ClearInputs()
         {
-            KeyOneCallback = null;
-            KeyTwoCallback = null;
+            KeyOneDownCallback = null;
+            KeyOnePressedCallback = null;
+            KeyOneUpCallback = null;
+            KeyTwoDownCallback = null;
+            KeyTwoPressedCallback = null;
+            KeyTwoUpCallback = null;
         }
     }
 }
