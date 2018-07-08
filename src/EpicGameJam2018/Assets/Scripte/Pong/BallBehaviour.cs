@@ -2,10 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallBehaviour : MonoBehaviour {
+    public GameObject textP2;
+    public GameObject textP4;
+    public GameObject textSpeed;
+    public GameObject textScoreLeft;
+    public GameObject textScoreRight;
+
     public float speedLeft { private set; get; }
     public float speedRight { private set; get; }
+
+    private int scoreLeft = 0;
+    private int scoreRight = 0;
 
     public float Speed
     {
@@ -18,10 +28,14 @@ public class BallBehaviour : MonoBehaviour {
     void Start()
     {
         ResetBall();
+        GetComponent<Rigidbody2D>().AddTorque(0.05f);
     }
 
     void Update()
     {
+        textP2.GetComponent<Text>().text = ((int)speedLeft).ToString();
+        textP4.GetComponent<Text>().text = ((int)speedRight).ToString();
+        textSpeed.GetComponent<Text>().text = ((int)Speed).ToString();
         GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity.normalized * Speed;
     }
 
@@ -87,6 +101,24 @@ public class BallBehaviour : MonoBehaviour {
         GetComponent<Rigidbody2D>().transform.position = new Vector2(0, 0);
         GetComponent<Rigidbody2D>().transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         GetComponent<Rigidbody2D>().velocity = (x > 50 ? Vector2.left : Vector2.right) * Speed;
+    }
+
+    public void AddPoint(Side side)
+    {
+        GameManager gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+        switch(side)
+        {
+            case Side.left:
+                gameManager.AddScore(PlayerId.P1);
+                gameManager.AddScore(PlayerId.P2);
+                textScoreLeft.GetComponent<Text>().text = (++scoreLeft).ToString();
+                break;
+            case Side.right:
+                gameManager.AddScore(PlayerId.P3);
+                gameManager.AddScore(PlayerId.P4);
+                textScoreRight.GetComponent<Text>().text = (++scoreRight).ToString();
+                break;
+        }
     }
 
     public void SetSpeedLeft(float speed)

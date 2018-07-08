@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance = null;
 
-    private readonly string[] _minigames = { "CatchThePresents", "Pong" }; //TODO add panda CatchThePresents
+    private readonly string[] _minigames = { "Pong", "CatchThePresents" }; //TODO add panda CatchThePresents
     private int _nextGame = 0;
 
     private Dictionary<PlayerId, Player> players = new Dictionary<PlayerId, Player>();

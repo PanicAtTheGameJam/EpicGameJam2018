@@ -10,7 +10,6 @@ public class SpeedControls : MonoBehaviour {
     private readonly float MIN = 5;
     private readonly float STEPS = 0.5f;
 
-    public GameObject gameManagerObject;
     public GameObject ballObject;
     public PlayerId playerId;
     public Side side;
@@ -19,7 +18,7 @@ public class SpeedControls : MonoBehaviour {
     private BallBehaviour ballBehaviour;
 
 	void Start () {
-        gameManager = gameManagerObject.GetComponent<GameManager>();
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         ballBehaviour = ballObject.GetComponent<BallBehaviour>();
 
         Dictionary<KeyCallback, Action> callbacks = new Dictionary<KeyCallback, Action>();

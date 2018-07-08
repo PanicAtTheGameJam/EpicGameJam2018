@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BarControls: MonoBehaviour
 {
-    public GameObject gameManagerParent;
     public PlayerId playerId;
     public float speed = 5;
 
@@ -21,7 +20,7 @@ public class BarControls: MonoBehaviour
         callbacks.Add(KeyCallback.KeyTwoPressed, OnKeyTwoPressed);
         callbacks.Add(KeyCallback.KeyTwoUp, OnKeyTwoUp);
 
-        gameManager = gameManagerParent.GetComponent<GameManager>();
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         gameManager.SetActionsForPlayer(playerId, callbacks);
 	}
 
