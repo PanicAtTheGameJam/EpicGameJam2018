@@ -17,6 +17,8 @@ public class BallBehaviour : MonoBehaviour {
     private int scoreLeft = 0;
     private int scoreRight = 0;
 
+    private AudioSource audioSource;
+
     public float Speed
     {
         get
@@ -27,6 +29,7 @@ public class BallBehaviour : MonoBehaviour {
 
     void Start()
     {
+        GetComponent<AudioSource>();
         ResetBall();
         GetComponent<Rigidbody2D>().AddTorque(0.05f);
     }

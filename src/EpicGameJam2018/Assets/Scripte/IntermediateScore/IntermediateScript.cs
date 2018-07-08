@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class IntermediateScript : MonoBehaviour {
 
-    private const int SecondsUntilNextScreen = 15;
+    private const int SecondsUntilNextScreen = 5;
     private const string CrownSprite = "Crown 1st";
     private const string ClownSprite = "Jesters cap";
 

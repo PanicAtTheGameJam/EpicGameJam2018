@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance = null;
 
-    private readonly string[] _minigames = { "Pong", "CatchThePresents" }; //TODO add panda CatchThePresents
+    private readonly string[] _minigames = { "CatchThePresents", "Pong" }; //TODO add panda CatchThePresents
     private int _nextGame = 0;
 
     private Dictionary<PlayerId, Player> players = new Dictionary<PlayerId, Player>();
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         //1. if nextGame is last game -> vic screen
         if (_nextGame == _minigames.Length) //we finished the list, show final score
         {
-            //TODO switch to final score
+            SceneManager.LoadScene("Victory");
         }
         else //2. if next game is just another game -> first intermediate score
         {
