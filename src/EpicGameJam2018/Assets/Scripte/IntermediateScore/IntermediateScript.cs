@@ -14,6 +14,8 @@ public class IntermediateScript : MonoBehaviour {
     public Text P3Score;
     public Text P4Score;
 
+    public Text SecondsCounter;
+
     // Use this for initialization
     void Start () {
         GM = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
@@ -26,9 +28,16 @@ public class IntermediateScript : MonoBehaviour {
         StartCoroutine(SwitchSceneAfter(SecondsUntilNextScreen));
     }
 
-    IEnumerator SwitchSceneAfter(float seconds)
+    IEnumerator SwitchSceneAfter(int seconds)
     {
-        yield return new WaitForSeconds(seconds);
+        int secondsLeft = seconds;
+
+        do
+        {
+            SecondsCounter.text = secondsLeft.ToString();
+            yield return new WaitForSeconds(1);
+        } while (--secondsLeft > 0);
+        
         SceneManager.LoadScene(GM.GetNextScene());
     }
 }
