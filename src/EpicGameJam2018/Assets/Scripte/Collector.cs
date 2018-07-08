@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Collector : MonoBehaviour {
 
@@ -17,13 +18,15 @@ public class Collector : MonoBehaviour {
 	private GameManager _gameManager;
 	private PresentManager _presentManager;
 
+	public GameObject TextNode;
+	private Text _text;
+
 	void OnCollisionEnter2D (Collision2D col)
     {
-		Debug.Log(col.gameObject.name);
         if(col.gameObject.tag == "Present")
         {
-			Debug.Log("alpha");
 			_gameManager.AddScore(Playerid);
+			_text.text = _gameManager.GetScore(Playerid).ToString();
 			_presentManager.DeletePresent(col.gameObject.GetComponent<Present>());
         }
     }
@@ -48,6 +51,9 @@ public class Collector : MonoBehaviour {
 		playerActions.Add(KeyCallback.KeyOnePressed, MoveLeft);
 		playerActions.Add(KeyCallback.KeyTwoPressed, MoveRight);
 		_gameManager.SetActionsForPlayer(Playerid, playerActions);
+
+		//link to UI component.
+		_text = TextNode.GetComponent<Text>();
 
 	}
 
