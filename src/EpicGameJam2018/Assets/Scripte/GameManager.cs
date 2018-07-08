@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         }
 
         //1. if nextGame is last game -> vic screen
-        if (_nextGame == _minigames.Length) //we finished the list, show final score
+        if (_nextGame == _minigames.Length -1) //we finished the list, show final score
         {
             SceneManager.LoadScene("Victory");
         }
