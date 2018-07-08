@@ -48,9 +48,9 @@ public class Cheek : MonoBehaviour {
 	{
 		_gameManager.AddScore(p1);
 		_gameManager.AddScore(p2);
-		string winMsg = "Team " + p1 + " and " + p2 + " has made the rough panda happy.";
+		string winMsg = "Team " + p1 + " and " + p2 + " managed to apply rouge to the panda!!";
 		_winText.text = winMsg;
-		StartCoroutine(SwitchSceneAfter(5));
+		StartCoroutine(SwitchSceneAfter(3));
 	}
 
 	IEnumerator SwitchSceneAfter(int seconds)

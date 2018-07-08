@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Pong.unity
     guid: 49157359768c5484688bbbaf17dcdf66
   - enabled: 1
+    path: Assets/Scenes/RoughPanda.unity
+    guid: befd87ac6630d954684e00f9cc82933d
+  - enabled: 1
     path: Assets/Scenes/Victory.unity
     guid: 3669603da94b9cd47b382dce7d3a7a91
   m_configObjects: {}
