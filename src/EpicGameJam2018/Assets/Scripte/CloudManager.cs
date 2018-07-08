@@ -49,7 +49,6 @@ public class CloudManager : MonoBehaviour {
 		rb2d.constraints = RigidbodyConstraints2D.FreezePositionY;
 		rb2d.mass = 0.5f;
 		go.transform.SetParent(_cloudHolder);
-		Debug.Log(go);
 
 		SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
 		int i = UnityEngine.Random.Range(0, sprites.Length - 1);
@@ -84,7 +83,6 @@ public class CloudManager : MonoBehaviour {
 		{
 			if (deleteX - Math.Abs(go.transform.position.x) < 0.01f)
 			{
-				Debug.Log("Reached deletion zone");
 				toBeDeleted.Add(go);
 			}
 		}

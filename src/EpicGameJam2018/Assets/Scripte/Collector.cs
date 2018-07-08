@@ -26,6 +26,10 @@ public class Collector : MonoBehaviour {
         if(col.gameObject.tag == "Present")
         {
 			_gameManager.AddScore(Playerid);
+			PlayerId teamMate = PlayerId.P3;
+			if (Playerid == PlayerId.P2)
+				teamMate = PlayerId.P4;
+			_gameManager.AddScore(teamMate);
 			_text.text = _gameManager.GetScore(Playerid).ToString();
 			_presentManager.DeletePresent(col.gameObject.GetComponent<Present>());
         }
