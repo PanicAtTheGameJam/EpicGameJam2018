@@ -55,10 +55,16 @@ public class IntermediateScript : MonoBehaviour {
         if (score == max)
         {
             hatHolder.sprite = Resources.Load<Sprite>(CrownSprite);
+            var color = hatHolder.color;
+            color.a = 1;
+            hatHolder.color = color;
         }
         else if (score == min)
         {
             hatHolder.sprite = Resources.Load<Sprite>(ClownSprite);
+            var color = hatHolder.color;
+            color.a = 1;
+            hatHolder.color = color;
         }
     }
 
