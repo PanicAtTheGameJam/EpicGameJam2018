@@ -17,19 +17,11 @@ public class BallBehaviour : MonoBehaviour {
 
     void Start()
     {
-        speedLeft = 15;
-        speedRight = 15;
-
-        System.Random random = new System.Random();
-        int x = random.Next(100);
-
-        Debug.Log(x);
-        GetComponent<Rigidbody2D>().velocity = (x > 50 ? Vector2.left : Vector2.right) * Speed;
+        ResetBall();
     }
 
     void Update()
     {
-        Debug.Log(Speed);
         GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity.normalized * Speed;
     }
 
@@ -82,6 +74,19 @@ public class BallBehaviour : MonoBehaviour {
         // ||
         // || -1 <- at the bottom of the racket
         return (ballPos.y - racketPos.y) / racketHeight;
+    }
+
+    public void ResetBall()
+    {
+        speedLeft = 15;
+        speedRight = 15;
+
+        System.Random random = new System.Random();
+        int x = random.Next(100);
+
+        GetComponent<Rigidbody2D>().transform.position = new Vector2(0, 0);
+        GetComponent<Rigidbody2D>().transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        GetComponent<Rigidbody2D>().velocity = (x > 50 ? Vector2.left : Vector2.right) * Speed;
     }
 
     public void SetSpeedLeft(float speed)
