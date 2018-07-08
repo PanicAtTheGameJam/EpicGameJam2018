@@ -116,7 +116,7 @@ public class PresentManager : MonoBehaviour {
 		foreach (Present p in _allPresents)
 		{
 			//a * x^2 + a
-			p.Move(WindDirection * (WindStrength * WindStrength) + WindDirection);
+			p.Move( CalcWind() );
 			if (p.transform.position.y < - (_stageDimensions.y + 2.0f))
 			{
 				toBeRemoved.Add(p);
@@ -128,6 +128,16 @@ public class PresentManager : MonoBehaviour {
 			
 			DeletePresent(p);
 		}
+	}
+
+	public float GetWindDirection()
+	{
+		return WindDirection;
+	}
+
+	public float CalcWind()
+	{
+		return WindDirection * (WindStrength * WindStrength) + WindDirection;
 	}
 
 	public void DeletePresent(Present p)
