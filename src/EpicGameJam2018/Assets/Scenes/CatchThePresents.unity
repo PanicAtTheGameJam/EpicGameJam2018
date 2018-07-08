@@ -145,6 +145,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 809f4d46232770742994f941f4ad1834, type: 3}
   - {fileID: 21300000, guid: 625c7ec34e1bc644f9aea66e2269fd4f, type: 3}
   - {fileID: 21300000, guid: 16a0dab6cca29b745a55b5b8c4a38ca9, type: 3}
+  MaxAmountOfClouds: 6
+  WaitingTimeForNextCloud: 7
 --- !u!4 &179510163
 Transform:
   m_ObjectHideFlags: 0
@@ -489,6 +491,12 @@ Prefab:
       propertyPath: TextNode
       value: 
       objectReference: {fileID: 1425904632}
+    - target: {fileID: 114111874735060228, guid: f5e922daf34590748b566436bbd0d08d,
+        type: 2}
+      propertyPath: Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c4f3a707219bab9419bb992c809530ab,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5e922daf34590748b566436bbd0d08d, type: 2}
   m_IsPrefabParent: 0
@@ -916,6 +924,22 @@ Prefab:
       propertyPath: TextNode
       value: 
       objectReference: {fileID: 666360640}
+    - target: {fileID: 212337037340626900, guid: f5e922daf34590748b566436bbd0d08d,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 212337037340626900, guid: f5e922daf34590748b566436bbd0d08d,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111874735060228, guid: f5e922daf34590748b566436bbd0d08d,
+        type: 2}
+      propertyPath: Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0a433ab54fb32b140a4034c93407f294,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5e922daf34590748b566436bbd0d08d, type: 2}
   m_IsPrefabParent: 0
